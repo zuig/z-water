@@ -59,19 +59,19 @@ Material:
     - _Gloss: 0.71
     - _NoiseRange: 6.43
     - _NormalRefract: 0.74
-    - _NormalScale: 1
+    - _NormalScale: 0.83
     - _Offset: 0
-    - _ReflDistortion: 0.58
-    - _ReflIntensity: 0.73
+    - _ReflDistortion: 0.61
+    - _ReflIntensity: 0.68
     - _Reflect: 0.5
     - _ReflectAmount: 0.5
-    - _RefrDistortion: 0.25
+    - _RefrDistortion: 0.085
     - _Refract: 0.07
     - _RefractAmount: 0.5
     - _Specular: 1.86
-    - _SpecularStrength: 1
+    - _SpecularStrength: 0.73
     - _Speed: 1
-    - _Transparency: 0.3
+    - _Transparency: 1.82
     - _WaterSpeed: 0.74
     - _WaveDelta: 2.43
     - _WaveRange: 0.3

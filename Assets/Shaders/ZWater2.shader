@@ -9,7 +9,7 @@
         _OneTilingOffset("OneTilingOffset",Vector) = (3.00, 3.00, -4.00, 4.00)
         _TowTilingOffset("TowTilingOffset",Vector) = (6.00, 6.00, -3.00, -3.00)
         [Space(20)]
-        _CubemapMap ("CubemapMap", 2D) = "white" {}
+        _CubemapMap ("CubemapMap", 2D) = "_Skybox" {}
         _ReflDistortion("ReflDistortion",Range(0,1)) = 1
         _ReflIntensity("ReflIntensity",Range(0,1)) = 0.585 
         [Space(20)]
