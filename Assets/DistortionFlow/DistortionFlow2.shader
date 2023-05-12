@@ -57,8 +57,8 @@ Shader "Custom/DistortionFlow2" {
 				float2 flowVector = tex2D(_FlowMap, i.uv).rg * 2 - 1;
 				float noise = tex2D(_FlowMap, i.uv).a;
 				float time = _Time.y + noise;
-				float3 uvwA = FlowUVW(i.uv, flowVector, time, false);
-				float3 uvwB = FlowUVW(i.uv, flowVector, time, true);
+				float3 uvwA = FlowUVW0(i.uv, flowVector, time, false);
+				float3 uvwB = FlowUVW0(i.uv, flowVector, time, true);
 
 				fixed4 texA = tex2D(_MainTex, uvwA.xy) * uvwA.z;
 				fixed4 texB = tex2D(_MainTex, uvwB.xy) * uvwB.z;
