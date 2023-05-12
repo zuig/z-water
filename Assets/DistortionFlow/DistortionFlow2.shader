@@ -2,7 +2,7 @@ Shader "Custom/DistortionFlow2" {
 	Properties {
 		_Color ("Color Tint", Color) = (1, 1, 1, 1)
 		_MainTex ("Main Tex", 2D) = "white" {}
-		[NoScaleOffset] _FlowMap ("Flow (RG)", 2D) = "black" {}
+		[NoScaleOffset] _FlowMap ("Flow (RG, A noise)", 2D) = "black" {}
 		_Specular ("Specular", Color) = (1, 1, 1, 1)
 		_Gloss ("Gloss", Range(8.0, 256)) = 20
 	}
@@ -55,9 +55,16 @@ Shader "Custom/DistortionFlow2" {
 				fixed3 worldLightDir = normalize(UnityWorldSpaceLightDir(i.worldPos));
 
 				float2 flowVector = tex2D(_FlowMap, i.uv).rg * 2 - 1;
-				float3 uvw = FlowUVW(i.uv, flowVector, _Time.y);
-				
-				fixed3 albedo = tex2D(_MainTex, uvw.xy).rgb * uvw.z * _Color.rgb;
+				float noise = tex2D(_FlowMap, i.uv).a;
+				float time = _Time.y + noise;
+				float3 uvwA = FlowUVW(i.uv, flowVector, time, false);
+				float3 uvwB = FlowUVW(i.uv, flowVector, time, true);
+
+				fixed4 texA = tex2D(_MainTex, uvwA.xy) * uvwA.z;
+				fixed4 texB = tex2D(_MainTex, uvwB.xy) * uvwB.z;
+				fixed4 c = (texA + texB) * _Color;
+
+				fixed3 albedo = c.rgb;
 				//albedo = float3(flowVector, 0);
 				
 				fixed3 ambient = UNITY_LIGHTMODEL_AMBIENT.xyz * albedo;
